@@ -2,8 +2,9 @@ import bcryptjs from "bcryptjs";
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import { response } from "express";
+import { errorHandler } from "../utils/error.js";
 
-export const signup = async (req, res) => {
+export const signup = async (req, res, next) => {
   //send data to database with json-insomnia
   const { username, email, password } = req.body;
   //for hash 
@@ -16,7 +17,7 @@ export const signup = async (req, res) => {
         res.status(201).json("user created successfully");
   }
   catch(error){
-    res.status(500).json(error.message);
+    next(error); //in index.js control all 
   }
   
 };

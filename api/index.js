@@ -31,3 +31,13 @@ app.listen(port, () => { //route
 //userRouter یعنی تمام مسیر ها رو چک کن 
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
+//middleware to handle errors
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || 'Internal Server Error';
+  return res.status(statusCode).json({
+    success: false,
+    statusCode, //ER6 standart - dont use statusCode:statusCode
+    message,
+  });
+});
