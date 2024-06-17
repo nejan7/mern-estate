@@ -14,7 +14,7 @@ export const signup = async (req, res, next) => {
   try{
       await newUser.save();
         //201 means something is created.
-        res.status(201).json("user created successfully");
+        res.status(201).json("user created successfully :)");
   }
   catch(error){
     next(error); //in index.js control all 
