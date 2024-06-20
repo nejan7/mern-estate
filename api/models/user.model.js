@@ -15,6 +15,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
+    avatar:{
+      type: String,
+      //profile pic
+      default: "https://cdn1.iconfinder.com/data/icons/monsters-avatars/512/50_Monsters_Avatar_Icons_38-512.png"
+    },
     // برای مرتب کردن زمان ایجاد کاربر بدرد میخوره
   },
   { timestamps: true }
