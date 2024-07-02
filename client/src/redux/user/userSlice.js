@@ -9,7 +9,7 @@ const initialState = {
 const userSlice = createSlice({
     name: 'user',
     initialState,
-    reducers: { // نحوه تغییر وضعیت را بر اساس اکشن‌ها
+    reducers: { // نحوه تغییر وضعیت  بر اساس اکشن‌ها
         signInStart: (state) => {
             state.loading = true;
         },
@@ -21,10 +21,29 @@ const userSlice = createSlice({
         signInFailure: (state, action) => {
             state.error = action.payload;
             state.loading = false;
-        }
+        },
+        updateUserStart: (state) => {
+            state.loading = true;
+          },
+          updateUserSuccess: (state, action) => {
+            state.currentUser = action.payload;
+            state.loading = false;
+            state.error = null;
+          },
+          updateUserFailure: (state, action) => {
+            state.error = action.payload;
+            state.loading = false;
+          },
     }
 });
 
-export const { signInStart, signInSuccess, signInFailure } = userSlice.actions;
-
-export default userSlice.reducer; //to able to use it in redux store
+export const {
+    signInStart,
+    signInSuccess,
+    signInFailure,
+    updateUserFailure,
+    updateUserSuccess,
+    updateUserStart,
+  } = userSlice.actions;
+  
+  export default userSlice.reducer; //to able to use it in redux store
