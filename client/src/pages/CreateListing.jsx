@@ -155,8 +155,6 @@ export const CreateListing = () => {
               <input
                 type='number'
                 id='regularPrice'
-                min='1'
-                max='10'
                 required
                 className='p-3 border border-gray-300 rounded-lg'
               />
@@ -169,8 +167,6 @@ export const CreateListing = () => {
               <input
                 type='number'
                 id='discountPrice'
-                min='1'
-                max='10'
                 required
                 className='p-3 border border-gray-300 rounded-lg'
               />
