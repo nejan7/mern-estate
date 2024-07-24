@@ -6,6 +6,8 @@ import authRouter from "./routes/auth.route.js";
 import "dotenv/config";
 import cookieParser from "cookie-parser";
 import listingRouter from './routes/listing.route.js';
+import path from 'path';
+
 
 dotenv.config(); //پسورد رو بردم توی دات انو
 
@@ -18,6 +20,8 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+  //for deploy
+  const __dirname = path.resolve();
 
 const app = express();
 //let json send information to server (tested in insomnia )
@@ -37,6 +41,13 @@ app.listen(port, () => {
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use('/api/listing', listingRouter);//make file in route folder
+//for deploy-- after another apis
+app.use(express.static(path.join(__dirname, '/client/dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+})
+
 //middleware to handle errors
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
